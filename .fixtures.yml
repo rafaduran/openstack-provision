@@ -1,0 +1,8 @@
+fixtures:
+  repositories:
+    cinder: git://github.com/stackforge/puppet-cinder
+    firewall: git://github.com/puppetlabs/puppetlabs-firewall
+    glance: git://github.com/stackforge/puppet-glance
+    neutron: git://github.com/stackforge/puppet-neutron
+  symlinks:
+    openstack_provision: "#{source_dir}"

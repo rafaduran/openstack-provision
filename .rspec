@@ -1,0 +1,1 @@
+--pattern spec/{classes,defines,unit,functions,hosts,integration}/**/*_spec.rb

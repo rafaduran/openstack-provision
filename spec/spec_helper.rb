@@ -1,17 +1,13 @@
-dir = File.expand_path(File.dirname(__FILE__))
-$LOAD_PATH.unshift File.join(dir, 'lib')
+require 'puppetlabs_spec_helper/module_spec_helper'
 
-require 'mocha'
-require 'puppet'
-require 'rspec'
-require 'spec/autorun'
-
-Spec::Runner.configure do |config|
-    config.mock_with :mocha
-end
-
-# We need this because the RAL uses 'should' as a method.  This
-# allows us the same behaviour but with a different method name.
-class Object
-    alias :must :should
+RSpec.configure do |config|
+  config.color_enabled = true
+  config.tty = true
+  config.formatter = :documentation
+  config.default_facts = {
+    :operatingsystem => 'CentOS',
+    :osfamily => 'RedHat',
+    :operatingsystemrelease => '6.4',
+    :concat_basedir => '/dne',
+  }
 end
