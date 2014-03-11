@@ -108,4 +108,12 @@ describe 'openstack_provision' do
       })
     }
   end
+
+  context 'with custom params' do
+    let(:params) {{
+      :setup_test_volume => false,
+    }}
+
+    it { should_not contain_class('cinder::setup_test_volume') }
+  end
 end

@@ -45,6 +45,9 @@
 # [*router_name*]
 #   Name for Neutron router. Default is _router1_.
 #
+# [*setup_test_volume*]
+#   Whether to setup a loopback test volume or not. Default is _true_.
+#
 # === Examples
 #
 #  class { openstack_provision:
@@ -60,7 +63,7 @@
 # Copyright 2014 Rafael Durán Castañeda
 #
 class openstack_provision (
-  $tenant_name    = 'admin',
+  $tenant_name          = 'admin',
   $fixed_range          = '10.0.0.0/24',
   $floating_range       = '172.24.4.224/28',
   $glance_images_hash   = undef,
@@ -72,8 +75,11 @@ class openstack_provision (
   $public_network_name  = 'public',
   $public_subnet_name   = 'public_subnet',
   $router_name          = 'router1',
+  $setup_test_volume    = true,
 ) {
-  include 'cinder::setup_test_volume'
+  if $setup_test_volume {
+    include 'cinder::setup_test_volume'
+  }
   $ubuntu_url = 'http://cloud-images.ubuntu.com/precise/current'
   $centos_url = 'http://repos.fedorapeople.org/repos/openstack/guest-images'
 
